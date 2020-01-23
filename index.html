@@ -10,7 +10,7 @@
     body {
       margin: 0;
       font-family: sans-serif;
-      background: url("https://source.unsplash.com/nDqA4d5NL0k/2000x2000");
+      background: url('blackforest.jpg');
       background-size: cover;
       display: flex;
       align-items: center;
@@ -46,11 +46,27 @@
   <ul id="bands"></ul>
 
 <script>
+
+  const bandContainer = document.getElementById('bands');
   
   const bands = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'Norma Jean', 'The Bled', 'Say Anything', 'The Midway State', 'We Came as Romans', 'Counterparts', 'Oh, Sleeper', 'A Skylit Drive', 'Anywhere But Here', 'An Old Dog'];
 
-  
-  
+  // Replace any articles with an empty string, then trim empty spaces:
+  function stripArticles(bandName) {
+    return bandName.replace(/^(a |an |the )/i, '').trim();
+  }
+
+  // Run the stripArticles function when comparing a to b:
+  const sortedBands = bands.sort( (a, b) => stripArticles(a) > stripArticles(b) ? 1 : -1 );
+
+  // Map over the list of bands, return a list item for each one, then use Join to convert from array to string:
+  bandContainer.innerHTML = sortedBands.map(band => `<li>${band}</li>`).join('');
+
+  /*const sortedBands = bands.map(function(band) {
+    bandContainer.innerHTML += '<li>' + band + '</li>';
+  });
+  */
+
 </script>
 
 </body>
