@@ -1,5 +1,5 @@
 # JavaScript 30 #17: Sorting Without Articles
 
-Use `array.sort` to alphabetize band names without articles such as "a", "an", "the", etc.
+Sorts items in any array that is passed into it, ignoring (but retaining) any articles such as "a," "an," and "the."
 
-Display the bands in the new order, but with their articles still attached to them.
+The code defaults to sorting an array of band names, but if you type `sortingMachine.init(movies)` into the console, it will sort an array of movies instead.
