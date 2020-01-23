@@ -17,7 +17,7 @@
       min-height: 100vh;
     }
 
-    #bands {
+    #sortedList {
       list-style: inside square;
       font-size: 20px;
       background: white;
@@ -27,12 +27,12 @@
       box-shadow: 0 0 0 20px rgba(0, 0, 0, 0.05);
     }
     
-    #bands li {
+    #sortedList li {
       border-bottom: 1px solid #efefef;
       padding: 20px;
     }
     
-    #bands li:last-child {
+    #sortedList li:last-child {
       border-bottom: 0;
     }
 
@@ -43,26 +43,30 @@
 
   </style>
 
-  <ul id="bands"></ul>
+  <ul id="sortedList"></ul>
 
 <script>
 
+  const bands = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'Norma Jean', 'The Bled', 'Say Anything', 'The Midway State', 'We Came as Romans', 'Counterparts', 'Oh, Sleeper', 'A Skylit Drive', 'Anywhere But Here', 'An Old Dog'];
+
+  const movies = ['Heat', 'The Bridge Over the River Kwai', 'L.A. Confidential', 'The Following', 'Street Kings', 'The Act of Killing'];
+
   const sortingMachine = {
-    bandContainer: document.getElementById('bands'),
-    bands: ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'Norma Jean', 'The Bled', 'Say Anything', 'The Midway State', 'We Came as Romans', 'Counterparts', 'Oh, Sleeper', 'A Skylit Drive', 'Anywhere But Here', 'An Old Dog'],
+    sortedContainer: document.getElementById('sortedList'),
     // Replace any articles with an empty string, then trim empty spaces:
-    stripArticles: (bandName) => {
-      return bandName.replace(/^(a |an |the )/i, '').trim();
+    stripArticles: (itemName) => {
+      return itemName.replace(/^(a |an |the )/i, '').trim();
     },
-    init: () => {
+    init: (list) => {
       // Run the stripArticles function when comparing a to b:
-      const sortedBands = sortingMachine.bands.sort( (a, b) => sortingMachine.stripArticles(a) > sortingMachine.stripArticles(b) ? 1 : -1 );
+      const sortedItems = list.sort( (a, b) => sortingMachine.stripArticles(a) > sortingMachine.stripArticles(b) ? 1 : -1 );
       // Map over the list of bands, return a list item for each one, then use Join to convert from array to string:
-      sortingMachine.bandContainer.innerHTML = sortedBands.map(band => `<li>${band}</li>`).join('');
+      sortingMachine.sortedContainer.innerHTML = sortedItems.map(item => `<li>${item}</li>`).join('');
     }
   }
 
-  sortingMachine.init();
+  sortingMachine.init(bands);
+  // sortingMachine.init(movies);
 
 </script>
 
